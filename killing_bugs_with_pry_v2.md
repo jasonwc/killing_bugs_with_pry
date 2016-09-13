@@ -14,7 +14,7 @@
 
 (but really we're a kickass software development team that practices extreme programming, pair programming, and test driven development)
 
-We're hiring in SLC!
+We're hiring mids and seniors in SLC!
 
 ![](https://www.mavenlink.com/marketing_asset?file=ML_logo_lb-bridge.png)
 
@@ -571,67 +571,12 @@ From: /Users/jasoncarter/Documents/pry-talk-code.rb @ line 50 HalfLife2#headcrab
 
 ---
 
-# .pryrc
-
-- Our .pryrc is configured by ansible-workstation
-- Submit a pr maybe?
-
---- 
-
-# I propose
+# Want these guys back? Add em!
 ```ruby
   Pry.commands.alias_command 'c', 'continue' rescue nil
   Pry.commands.alias_command 's', 'step' rescue nil
   Pry.commands.alias_command 'n', 'next' rescue nil
   Pry.commands.alias_command 'r!', 'reload!' rescue nil
-```
-
----
-
-# Some rad stuff in there already
-```
-command "copy", "Copies any supplied string to the system clip board"  do |string|
-  IO.popen('pbcopy', 'w') { |f| f << string.to_s }
-end
-
-command "sql",
-        "Send any supplied SQL statement to the currently connected ActiveRecord database.",
-        requires_gem: ['activerecord'] do |query|
-  ActiveRecord::Base.connection.select_all(query)
-end
-
-command "caller_method", "Reveal the caller of the current method." do |depth|
-  depth = depth.to_i || 1
-  if /^(.+?):(\d+)(?::in `(.*)')?/ =~ caller(depth+1).first
-    file = Regexp.last_match[1]
-    line = Regexp.last_match[2].to_i
-    method = Regexp.last_match[3]
-    output.puts [file, line, method]
-  end
-end
-
-command "array_toy",
-        "Returns an Array object keyed from 1 to 10. This is helpful for experimenting with the Array library.",
-        keep_retval: true do
-  Array.new(10) { |i| i+1 }
-end
-
-command "hash_toy",
-        "Returns a hash object keyed from 'a' to 'j'. This is helpful for experimenting with the hash library.",
-        keep_retval: true do
-  Hash[("a".."j").to_a.zip((1..10).to_a)]
-end
-
-command "local_methods", "Shows the local methods of the current object", keep_retval: true  do |object|
-  case object.class
-  when Class
-    object.public_methods.sort - Object.public_methods
-  when Module
-    object.public_methods.sort - Module.public_methods
-  else
-    object.public_methods.sort - Object.new.public_methods
-  end
-end
 ```
 
 ---
@@ -662,6 +607,9 @@ end
 - [pry github](https://github.com/pry/pry)
 - [pry wiki](https://github.com/pry/pry/wiki)
 - [pry-byebug github](https://github.com/deivid-rodriguez/pry-byebug)
+
+# Credit
+The lovely folks at Valve for making the excellent Half Life series and all the levels, characters, and enemies I've unceremoniously stolen for this talk.
 
 ---
 
